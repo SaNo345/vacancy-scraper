@@ -43,13 +43,13 @@ public class WordMatchComparator implements Comparator<Job> {
         if (pos1 == -1 && pos2 == -1) {
             return 0;
         } else if (pos1 == -1) {
-            return -1;
+            return 1;
         } else if (pos2 == -1) {
-            return 1;
-        } else if (pos1 < pos2) {
-            return 1;
-        } else {
             return -1;
+        } else if (pos1 < pos2) {
+            return -1;
+        } else {
+            return 1;
         }
     }
 }
