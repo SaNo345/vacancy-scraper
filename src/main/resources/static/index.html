@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
   
 <head>
     <meta charset="utf-8">
@@ -114,24 +114,17 @@
     <header class="site-header size-lg text-center" style="background-image: url(assets/img/bg-banner1.jpg)">
       <div class="container">
         <div class="col-xs-12">
+          <div  class="header-job-search">
+            <div class="input-keyword">
+              <input  @keyup.13="find" type="text" v-model="keyword" class="form-control" placeholder="Job title">
+            </div>
+            <div class="btn-search">
+              <button @click="find" class="btn btn-primary" >Find jobs</button></div>
+          </div>
           <br><br>
           <h2>We offer <mark>1,259</mark> job vacancies right now!</h2>
           <h5 class="font-alt">Find your desire one in a minute</h5>
           <br><br><br>
-          <form class="header-job-search">
-            <div class="input-keyword">
-              <input type="text" class="form-control" placeholder="Job title, skills, or company">
-            </div>
-
-            <!--<div class="input-location">
-              <input type="text" class="form-control" placeholder="City, state or zip">
-            </div>-->
-
-            <div class="btn-search">
-              <button class="btn btn-primary" type="submit">Find jobs</button>
-             <!-- <a href="job-list.html">Advanced Job Search</a>-->
-            </div>
-          </form>
         </div>
 
       </div>
@@ -146,7 +139,7 @@
 
       <!-- Recent jobs -->
       <section>
-        <div class="container" >
+        <div class="container" id="result-list">
           <header class="section-header">
             <span>{{message}}</span>
             <h2>Recent jobs</h2>
@@ -155,7 +148,7 @@
           <div class="row item-blocks-connected">
 
             <!-- Job item -->
-            <job-list :jobs="jobs" />
+            <job-list :jobs="jobs"  />
             <!-- END Job item -->
 
 

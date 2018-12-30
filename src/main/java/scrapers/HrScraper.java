@@ -39,6 +39,9 @@ public class HrScraper extends Scrap implements JobScraper{
                 job1.setTitle(aElem.getElementsByTag("h3").first().text());
                 job1.setCompany(aElem.getElementsByTag("p").first().text());
                 job1.setLink("http://hr.am"+aElem.attr("href"));
+                if(job1.getCompanyLogo() == null){
+                    job1.setCompanyLogo("assets/img/job.png");
+                }
                 this.result.add(job1);
             }
 

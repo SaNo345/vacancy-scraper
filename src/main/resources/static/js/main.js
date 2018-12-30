@@ -1,13 +1,11 @@
-var jobsApi = Vue.resource('/scrap/job?keyword=php');
 Vue.component('job-item', {
     props:['job'],
     template: '<div class="col-xs-12" >'+
-             '<a class="item-block" href="job-detail.html">'+
+             '<a class="item-block" v-bind:href="job.link" target="_blank" v-bind:title="job.description" >'+
                 '<header>'+
-                  '<img src="assets/img/logo-google.jpg" alt="">'+
+                  '<div><img v-bind:src="job.companyLogo" class="job-logo" alt=""></div>'+
                   '<div class="hgroup">'+
                     '<h4>{{job.title}}</h4>'+
-                    '<h5>{{job.description}}</h5>'+
                   '</div>'+
                   '<div class="header-meta">'+
                     '<span class="location">Menlo park, CA</span>'+
@@ -16,20 +14,46 @@ Vue.component('job-item', {
 
 Vue.component(  'job-list',{
     props:['jobs'],
-    template:'<div><job-item v-for="job in jobs"  :job="job" track-by="id" /></div>',
-    created:function () {
-        jobsApi.get().then(result =>
-        result.json().then(data =>
-                data.forEach( job => this.jobs.push(job);)
-            )
-        )
-    }
-              });
+    template:'<div id="res"><job-item v-for="job in jobs"  :job="job" :key="job.id"  /></div>'
+
+});
+
+
 
 var app = new Vue({
-  el: '#app',
-  data: {
-    message: 'Hello, Vue!',
-    jobs:[]
-  }
+    el: '#app',
+    data: {
+        message: 'Hello, Vue!',
+        keyword:'',
+        jobs:[]
+    },
+    watch: {
+        jobs: function (val) {
+            console.log("new value");
+                //this.jobs =[];
+                this.jobs = val;
+            $('html, body').animate({
+                scrollTop: $("#result-list").offset().top
+            }, 2000);
+        },
+        keyword: function (val) {
+            this.keyword = val;
+        }
+    },
+    methods: {
+        find: function () {
+            const jobsApi = Vue.resource('/scrap/job?keyword='+ this.keyword);
+            jobsApi.get().then(result => {
+                this.keyword='';
+            result.json().then(data => {
+                this.jobs=data;
+                // console.log(data);
+           /*     data.forEach(job => {
+                this.jobs.push(job);
+        });*/
+            console.log(this.jobs);
+        })
+        })
+        }
+    }
 });

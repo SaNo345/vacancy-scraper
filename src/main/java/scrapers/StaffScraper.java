@@ -49,6 +49,9 @@ public class StaffScraper extends Scrap implements JobScraper {
                 String link = "https://staff.am" + sjob.select("a.load-more").first().attr("href");
 
                 Job job = new Job(0, title, "", company, link, null, deadline, logoLink);
+                if(job.getCompanyLogo() == null){
+                    job.setCompanyLogo("assets/img/job.png");
+                }
                 this.result.add(job);
 
             }

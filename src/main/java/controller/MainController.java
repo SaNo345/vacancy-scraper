@@ -6,10 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import scrapers.HrScraper;
-import scrapers.ResumeScraper;
-import scrapers.StaffScraper;
-import scrapers.WorknetScraper;
+import scrapers.*;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -28,12 +25,13 @@ public class MainController {
         List<Job> dest = new CopyOnWriteArrayList<>();
 
         long start = System.nanoTime();
-        ExecutorService executorService = Executors.newFixedThreadPool(4);
+        ExecutorService executorService = Executors.newFixedThreadPool(5);
 
         executorService.execute(new StaffScraper(keyword, dest));
         executorService.execute(new WorknetScraper(keyword, dest));
         executorService.execute(new HrScraper(keyword, dest));
         executorService.execute(new ResumeScraper(keyword,dest));
+        executorService.execute(new ListScraper(keyword,dest));
 
         executorService.shutdown();
 

@@ -67,6 +67,9 @@ public class WorknetScraper  implements JobScraper{
                 String link = "https://www.worknet.am"+ titleElement.attr("href");
                 String description = sjob.getElementsByTag("p").first().text();
                 Job job = new Job(title,description,link,imgSrc);
+                if(job.getCompanyLogo() == null){
+                    job.setCompanyLogo("assets/img/job.png");
+                }
                 this.result.add(job);
 
             }

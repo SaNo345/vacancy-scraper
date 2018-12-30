@@ -43,6 +43,9 @@ public class ResumeScraper extends Scrap implements JobScraper {
                 job.setTitle(title);
                 job.setCompanyLogo(logoLink);
                 job.setCompany(company);
+                if(job.getCompanyLogo() == null){
+                    job.setCompanyLogo("assets/img/job.png");
+                }
                 this.result.add(job);
             }
 
@@ -53,6 +56,7 @@ public class ResumeScraper extends Scrap implements JobScraper {
 
     @Override
     public void run() {
+        System.out.println("Run Resume scraper ");
         try {
             getJobs();
         } catch (InterruptedException e) {
@@ -82,7 +86,8 @@ public class ResumeScraper extends Scrap implements JobScraper {
                 job.setTitle(title);
                 job.setCompanyLogo(logoLink);
                 job.setCompany(company);
-                System.out.println(job);
+
+                // System.out.println(job);
             }
 
         } catch (IOException e) {
