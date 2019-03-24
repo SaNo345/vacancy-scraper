@@ -1,6 +1,7 @@
 package scrapers;
 
 import model.Job;
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -8,32 +9,38 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by sano on 12/30/18.
  */
 public class ListScraper extends Scrap implements JobScraper {
-    private static String searchLink="https://www.list.am/category?q=";
+    private static String searchLink = "https://www.list.am/category/29?q=";
+
     public ListScraper(String keyword, List result) {
         super(keyword, result);
     }
 
     public void getJobs() throws InterruptedException {
         try {
-            Document listPage = Jsoup.connect(searchLink+"&c=29").get();
+
+            Document listPage = Jsoup.connect(searchLink + keyword + "&c=29")
+                    .get();
             Elements resultList = listPage.getElementsByClass("t");
-            System.out.println( " List size "+resultList.size());
-            int count =0;
+            System.out.println(" List size " + resultList.size());
+            int count = 0;
             for (Element res : resultList) {
-                if(count==10){break;}
+                if (count == 10) {
+                    break;
+                }
                 Element a = res.getElementsByTag("a").first();
                 count++;
-                if(a == null){
+                if (a == null) {
                     continue;
                 }
 
                 String jobTitle = a.text();
-                String link = "https://www.list.am/"+a.attr("href");
+                String link = "https://www.list.am/" + a.attr("href");
 
                 Job job = new Job();
                 job.setCompanyLogo("assets/img/job.png");
