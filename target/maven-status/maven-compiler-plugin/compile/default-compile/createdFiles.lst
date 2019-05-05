@@ -1,0 +1,11 @@
+scrapers\WorknetScraper.class
+model\Job.class
+scrapers\StaffScraper.class
+scrapers\HrScraper.class
+JobScrapApplication.class
+scrapers\ResumeScraper.class
+scrapers\ListScraper.class
+comparator\WordMatchComparator.class
+controller\MainController.class
+scrapers\Scrap.class
+scrapers\JobScraper.class

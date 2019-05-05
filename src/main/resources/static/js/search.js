@@ -4,7 +4,9 @@
 let allJobs = [];
 let firstJobs = [];
 const firstCount = 15;
-
+$( function() {
+    $( document ).tooltip();
+} );
 let find = function () {
 
     let input = $('#search_keyword');
@@ -19,7 +21,7 @@ let find = function () {
             console.log(allJobs.length);
             if (allJobs && allJobs.length > 0) {
                 //display jobs count
-                $('#open-count').append('<h4>Open vacancies now -' + allJobs.length + '</h4>');
+                $('#open-count').append('<h4>Open vacancies now  ' + allJobs.length + '</h4>');
 
                 for (let i = 0; i < firstCount; i++) {
                     firstJobs.push(allJobs[i]);
@@ -63,16 +65,17 @@ $('#search_keyword').on('keyup', function (e) {
 });
 
 let generate_html = function (job) {
+    let desq = job.description?job.description:'';
     let str = '<div class="col-xs-12"><div class="  job-item">' +
         '<a  href="' + job.link + '" target="_blank" ' +
-        'title="' + job.description + '">' +
+        'title="' + desq + '">' +
         '<div>' +
         '<div class="col-sm-2"><img src="' + job.companyLogo + '" class="job-logo" alt=""></div>' +
         '<div class="col-sm-8">' +
         '<h4>' + job.title + '</h4>' +
         '</div>' +
         '<div class="col-sm-2">' +
-        '<span class="location ">Armenia</span>' +
+        '<span class="location">Armenia</span>' +
         '<span class="label label-success">Full-time</span></div></div>' +
         '</a></div></div>';
     return str;

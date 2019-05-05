@@ -13,6 +13,8 @@
     <!-- Styles -->
     <link href="assets/css/app.min.css" rel="stylesheet">
     <link href="assets/css/custom.css" rel="stylesheet">
+    <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
+
 
     <!-- Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Oswald:100,300,400,500,600,800%7COpen+Sans:300,400,500,600,700,800%7CMontserrat:400,700'
@@ -24,6 +26,8 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
      <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
+
 </head>
 
 <body class="nav-on-header smart-nav">
@@ -37,8 +41,8 @@
                 <a class="navbar-toggle" href="#" data-toggle="offcanvas"><i class="ti-menu"></i></a>
 
                 <div class="logo-wrapper">
-                    <a class="logo" href="index-2.html"><img src="assets/img/logo.png" alt="logo"></a>
-                    <a class="logo-alt" href="index-2.html"><img src="assets/img/logo-alt.png" alt="logo-alt"></a>
+                    <a class="logo" href=""><img src="assets/img/logo.png" alt="logo"></a>
+                    <a class="logo-alt" href=""><img src="assets/img/logo-alt.png" alt="logo-alt"></a>
                 </div>
 
             </div>
@@ -116,14 +120,12 @@
         <div class="container">
             <div class="col-xs-12">
                 <div class="header-job-search">
-                    <!--<form onsubmit="find()" action="return;" method="get">-->
                     <div class="input-keyword">
-                        <input id="search_keyword" type="text" class="form-control" placeholder="Job title">
+                        <input id="search_keyword" type="text" class="form-control" placeholder="Job title" value="">
                     </div>
                     <div class="btn-search">
                         <button type="button" onclick="find()" class="btn btn-primary">Find jobs</button>
                     </div>
-                    <!--</form>-->
                 </div>
                 <br><br>
                 <h2>We offer
@@ -154,13 +156,9 @@
                 </header>
     -->
                 <div class="row item-blocks-connected">
-
                     <!-- Job item -->
-                    <div id="res">
-                    </div>
+                    <div id="res"></div>
                     <!-- END Job item -->
-
-
                 </div>
 
                 <br><br>

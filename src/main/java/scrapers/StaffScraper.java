@@ -34,7 +34,12 @@ public class StaffScraper extends Scrap implements JobScraper {
             Elements jobList = staffpage.getElementsByAttributeValue("data-page", "1");
 
             for (Element sjob : jobList) {
-                String logoLink = "https:" + sjob.getElementsByTag("img").first().attr("src");
+                 String logoLink = null;
+                try{
+                    logoLink = "https:" + sjob.getElementsByTag("img").first().attr("src");
+                }catch(NullPointerException ne){
+                    continue;
+                }
                 String title = sjob.select("p[class='font_bold']").first().text();
                 String company = sjob.select("div.job-inner.job-item-title > p:nth-child(2)").first().text();
                 String dateStr = sjob.select("div[class='job-inner job-list-deadline']").first().getElementsByTag("p").text();

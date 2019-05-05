@@ -14,6 +14,5 @@ import java.io.IOException;
 public class JobScrapApplication {
     public static void main(String[] args) throws IOException {
         SpringApplication.run(JobScrapApplication.class,args);
-     //   System.setProperty("webdriver.chrome.driver", "/home/sano/Public/chromedriver");
     }
 }
